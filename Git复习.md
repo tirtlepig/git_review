@@ -92,3 +92,12 @@ git gui：图形界面git
 
 配置过程见廖雪峰老师教程：[远程仓库 - 廖雪峰的官方网站 (liaoxuefeng.com)](https://www.liaoxuefeng.com/wiki/896043488029600/896954117292416#0)
 
+### 8.2提交远程仓库
+GitHub给予的提交方法：
+
+![image-20220111222425338](C:\Users\86184\AppData\Roaming\Typora\typora-user-images\image-20220111222425338.png)
+
+1.要关联一个远程库：使用git remote add origin git@server-name:path/repo-name.git；
+2.origin是默认习惯命名，关联远程库时要给远程库指定一个名字
+3.关联后的使用git push -u origin master第一次推送master分支的所有内容
+4.每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改
