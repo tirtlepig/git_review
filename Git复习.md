@@ -101,3 +101,40 @@ GitHub给予的提交方法：
 2. origin是默认习惯命名，关联远程库时要给远程库指定一个名字
 3. 关联后的使用git push -u origin master第一次推送master分支的所有内容
 4. 每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改
+
+### 8.3从远程库克隆
+git clone +git库地址 如：git clone git@github.com:michaelliao/gitskills.git（这不是我的）
+
+## 九、分支管理
+
+​		分支在实际中有什么用呢？假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，由于代码还没写完，不完整的代码库会导致别人不能干活了。如果等代码全部写完再一次提交，又存在丢失每天进度的巨大风险。
+
+​		现在有了分支，就不用怕了。你创建了一个属于你自己的分支，别人看不到，还继续在原来的分支上正常工作，而你在自己的分支上干活，想提交就提交，直到开发完毕后，再一次性合并到原来的分支上，这样，既安全，又不影响别人工作。
+
+### 8.1创建和合并分支
+1.创建和合并分支的具体内容见廖雪峰老师博客：https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424
+2.HEAD严格的说指向的不是提交而是当前分支
+3.创建分支命令，如创建dev分支：git checkout -b dev  checkout加-b参数 表示创建并切换，相当于：git branch dev+ git checkout dev
+4.git branch 查看当前分支 会列出所有分支 当前分支前会标出*号
+5.将一分支的工作成果合并到另一分支，如当前在master分支，将dev分支工作合并到master分支上 git merge dev
+6.创建并切换分支的另一个命令 git switch -c dev，只切换分支 git switch xxx 更科学
+7.git branch -d dev 删除dev分支
+8.git merge的fast-forward模式：快速模式，直接改变master的指向，但不是所有的合并都能用这种方式
+
+### 8.2冲突和冲突解决
+
+![git-br-feature1](https://www.liaoxuefeng.com/files/attachments/919023000423040/0)
+
+像这种在两个分支上都做了修改，试图将各自修改合并就会冲突，需要手动解决冲突然后再合并分支。
+
+### 8.3分支管理策略
+1.fast forward模式删除分支后会丢掉分支信息
+2.强制禁用fast forward模式使用 git merge --no--ff -m+info +barchname  带-m参数是因为，本次合并要创建一个新的commit
+#### 8.3.1分支策略
+1.合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
+2.master上不应做开发，应该像图片所示：
+
+![git-br-policy](https://www.liaoxuefeng.com/files/attachments/919023260793600/0)
+
+
+
